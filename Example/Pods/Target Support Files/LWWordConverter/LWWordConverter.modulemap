@@ -1,0 +1,6 @@
+framework module LWWordConverter {
+  umbrella header "LWWordConverter-umbrella.h"
+
+  export *
+  module * { export * }
+}

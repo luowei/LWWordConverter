@@ -5,9 +5,10 @@ platform :ios, '8.0'
 target 'LWWordConverter_Example' do
   pod 'LWWordConverter', :path => '../'
 
-  target 'LWWordConverter_Tests' do
-    inherit! :search_paths
+  pod 'SQLCipher'
+  pod 'AFNetworking'
 
-    
-  end
+  # target 'LWWordConverter_Tests' do
+  #   inherit! :search_paths
+  # end
 end

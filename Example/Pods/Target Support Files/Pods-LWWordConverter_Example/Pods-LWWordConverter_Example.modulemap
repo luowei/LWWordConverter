@@ -1,0 +1,6 @@
+framework module Pods_LWWordConverter_Example {
+  umbrella header "Pods-LWWordConverter_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

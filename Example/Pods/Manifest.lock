@@ -1,0 +1,47 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - LWWordConverter (1.0.0):
+    - AFNetworking
+    - SQLCipher
+  - SQLCipher (4.2.0):
+    - SQLCipher/standard (= 4.2.0)
+  - SQLCipher/common (4.2.0)
+  - SQLCipher/standard (4.2.0):
+    - SQLCipher/common
+
+DEPENDENCIES:
+  - AFNetworking
+  - LWWordConverter (from `../`)
+  - SQLCipher
+
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - SQLCipher
+
+EXTERNAL SOURCES:
+  LWWordConverter:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  LWWordConverter: 11a881ba4c1d729891ea94cb34d3fed6723bb82a
+  SQLCipher: 0187a2180ac288ea686b670b7141da62cd013b16
+
+PODFILE CHECKSUM: e48d1b6b819600e0145d5eaf469e32b083e90bde
+
+COCOAPODS: 1.8.3

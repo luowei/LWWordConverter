@@ -22,7 +22,6 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		CFE3919C35DBE78B0234D26B /* Pods_LWWordConverter_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F055D3A09E918EAAFCC083DB /* Pods_LWWordConverter_Tests.framework */; };
 		E8CF3D914051DDF50EA21B99 /* Pods_LWWordConverter_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 692D291D1FE671ACC389790A /* Pods_LWWordConverter_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,8 +36,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A2FE47EF1B617737B83EB27 /* Pods-LWWordConverter_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LWWordConverter_Tests.debug.xcconfig"; path = "Target Support Files/Pods-LWWordConverter_Tests/Pods-LWWordConverter_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		30358AEF0D96C1D314575D02 /* Pods-LWWordConverter_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LWWordConverter_Tests.release.xcconfig"; path = "Target Support Files/Pods-LWWordConverter_Tests/Pods-LWWordConverter_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		4AF84F32341B1D0AB60BDBDC /* Pods-LWWordConverter_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LWWordConverter_Example.debug.xcconfig"; path = "Target Support Files/Pods-LWWordConverter_Example/Pods-LWWordConverter_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* LWWordConverter_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LWWordConverter_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -66,7 +63,6 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B1DF26D23FA9DE8C5EFBF5FE /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		D2797A651DEB29A0CA86555E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		F055D3A09E918EAAFCC083DB /* Pods_LWWordConverter_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LWWordConverter_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +84,6 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				CFE3919C35DBE78B0234D26B /* Pods_LWWordConverter_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,8 +95,6 @@
 			children = (
 				4AF84F32341B1D0AB60BDBDC /* Pods-LWWordConverter_Example.debug.xcconfig */,
 				736F52DAD5CF768B74049036 /* Pods-LWWordConverter_Example.release.xcconfig */,
-				0A2FE47EF1B617737B83EB27 /* Pods-LWWordConverter_Tests.debug.xcconfig */,
-				30358AEF0D96C1D314575D02 /* Pods-LWWordConverter_Tests.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -136,7 +129,6 @@
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
 				692D291D1FE671ACC389790A /* Pods_LWWordConverter_Example.framework */,
-				F055D3A09E918EAAFCC083DB /* Pods_LWWordConverter_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -223,7 +215,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "LWWordConverter_Tests" */;
 			buildPhases = (
-				A14FF2B18CF952063504C244 /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
@@ -324,37 +315,19 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-LWWordConverter_Example/Pods-LWWordConverter_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/LWWordConverter/LWWordConverter.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLCipher/SQLCipher.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LWWordConverter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLCipher.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LWWordConverter_Example/Pods-LWWordConverter_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A14FF2B18CF952063504C244 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LWWordConverter_Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -523,7 +496,6 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A2FE47EF1B617737B83EB27 /* Pods-LWWordConverter_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -548,7 +520,6 @@
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 30358AEF0D96C1D314575D02 /* Pods-LWWordConverter_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LWWordConverter'
-  s.version          = '0.1.0'
+  s.version          = '1.0.0'
   s.summary          = 'A short description of LWWordConverter.'
 
 # This description is used to generate tags and improve search results.
@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/luowei/LWWordConverter'
+  s.homepage         = 'https://gitlab.com/ioslibraries1/lwwordconverter.git'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'luowei' => 'luowei@wodedata.com' }
-  s.source           = { :git => 'https://github.com/luowei/LWWordConverter.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://gitlab.com/ioslibraries1/lwwordconverter.git' }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
@@ -36,7 +36,20 @@ TODO: Add long description of the pod here.
   #   'LWWordConverter' => ['LWWordConverter/Assets/*.png']
   # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
+  s.public_header_files = 'Pod/Classes/**/*.h'
+
+  s.xcconfig = {
+      'OTHER_CFLAGS' => '$(inherited) -DSQLITE_HAS_CODEC -DSQLITE_THREADSAFE -DSQLITE_TEMP_STORE=2 -DSQLCIPHER_CRYPTO_CC',
+      'OTHER_LDFLAGS' => '$(inherited) -framework Security'
+      # 'OTHER_CPPFLAGS' => '$(inherited) -I/usr/local/opt/openssl/include',
+      # 'OTHER_LDFLAGS' => '$(inherited) -L/usr/local/opt/openssl/lib -framework Security'
+    }
+
+
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
+
+  s.dependency 'SQLCipher'
+  s.dependency 'AFNetworking'
+
 end
