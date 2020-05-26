@@ -59,10 +59,10 @@
 		692D291D1FE671ACC389790A /* Pods_LWWordConverter_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LWWordConverter_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		736F52DAD5CF768B74049036 /* Pods-LWWordConverter_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LWWordConverter_Example.release.xcconfig"; path = "Target Support Files/Pods-LWWordConverter_Example/Pods-LWWordConverter_Example.release.xcconfig"; sourceTree = "<group>"; };
-		7B06A727754A8CC80AE54D8B /* LWWordConverter.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = LWWordConverter.podspec; path = ../LWWordConverter.podspec; sourceTree = "<group>"; };
+		7B06A727754A8CC80AE54D8B /* LWWordConverter.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LWWordConverter.podspec; path = ../LWWordConverter.podspec; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B1DF26D23FA9DE8C5EFBF5FE /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		D2797A651DEB29A0CA86555E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		B1DF26D23FA9DE8C5EFBF5FE /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		D2797A651DEB29A0CA86555E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +96,6 @@
 				4AF84F32341B1D0AB60BDBDC /* Pods-LWWordConverter_Example.debug.xcconfig */,
 				736F52DAD5CF768B74049036 /* Pods-LWWordConverter_Example.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -239,6 +238,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = luowei;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = G3A2KYKYBU;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -249,6 +251,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -467,6 +470,7 @@
 			baseConfigurationReference = 4AF84F32341B1D0AB60BDBDC /* Pods-LWWordConverter_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = G3A2KYKYBU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LWWordConverter/LWWordConverter-Prefix.pch";
 				INFOPLIST_FILE = "LWWordConverter/LWWordConverter-Info.plist";
@@ -483,6 +487,7 @@
 			baseConfigurationReference = 736F52DAD5CF768B74049036 /* Pods-LWWordConverter_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = G3A2KYKYBU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LWWordConverter/LWWordConverter-Prefix.pch";
 				INFOPLIST_FILE = "LWWordConverter/LWWordConverter-Info.plist";

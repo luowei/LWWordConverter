@@ -40,7 +40,8 @@ TODO: Add long description of the pod here.
 
   s.xcconfig = {
       'OTHER_CFLAGS' => '$(inherited) -DSQLITE_HAS_CODEC -DSQLITE_THREADSAFE -DSQLITE_TEMP_STORE=2 -DSQLCIPHER_CRYPTO_CC',
-      'OTHER_LDFLAGS' => '$(inherited) -framework Security'
+      'OTHER_LDFLAGS' => '$(inherited) -framework Security',
+      'WARNING_CFLAGS' => '-Wno-implicit-function-declaration',
       # 'OTHER_CPPFLAGS' => '$(inherited) -I/usr/local/opt/openssl/include',
       # 'OTHER_LDFLAGS' => '$(inherited) -L/usr/local/opt/openssl/lib -framework Security'
     }
