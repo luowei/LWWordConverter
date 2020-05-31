@@ -1,4 +1,9 @@
-use_frameworks!
+# source 'https://gitlab.com/ioslibraries1/mygitlabrepo.git'
+source 'https://gitee.com/lw_ios_project/mylibrepo.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
+
+# use_frameworks!
 
 platform :ios, '8.0'
 
@@ -6,7 +11,8 @@ target 'LWWordConverter_Example' do
   pod 'LWWordConverter', :path => '../'
 
   pod 'SQLCipher'
-  pod 'AFNetworking'
+  pod 'LWReachabilityManager',:source => 'https://gitee.com/lw_ios_project/mylibrepo.git'
+  # pod 'AFNetworking'
 
   # target 'LWWordConverter_Tests' do
   #   inherit! :search_paths

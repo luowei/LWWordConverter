@@ -5,12 +5,13 @@
 
 #import "LWConverterService.h"
 #import "sqlite3.h"
-#import "AFNetworking.h"
-//#import "LWLogger.h"
+#import "LWNetworkReachabilityManager.h"
+//#import "NSLogger.h"
 
-#define Fanyi_URLString @"https://fanyi-api.baidu.com/api/trans/vip/translate"
-#define BaiduFanyi_Appid @"20170309000041858"
-#define BaiduFanyi_SecretKey @"yeLdUw6n25kZYL_wcPhs"
+//#define Fanyi_URLString @"https://fanyi-api.baidu.com/api/trans/vip/translate"
+//#define BaiduFanyi_Appid @"20170309000041858"
+//#define BaiduFanyi_SecretKey @"yeLdUw6n25kZYL_wcPhs"
+#define Fanyi_URLString @"https://cn.bing.com/ttranslatev3"
 
 @implementation LWConverterService {
     sqlite3 *dbSqlite;
@@ -38,10 +39,10 @@
 
         //监听网络状态
         __weak typeof(self) weakSelf = self;
-        [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        [[LWNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(LWNetworkReachabilityStatus status) {
             weakSelf.networkReachabilityStatus = status;
         }];
-        [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+        [[LWNetworkReachabilityManager sharedManager] startMonitoring];
 
         self.toLanguage = @"en"; //默认翻译为英文
     }
@@ -203,6 +204,73 @@
     }
     __block NSString *translation = @"";
     //检查网络
+    if (self.networkReachabilityStatus == LWNetworkReachabilityStatusNotReachable) {
+        translation = @"网络连接错误";
+    }
+
+    NSDictionary *headers = @{
+            @"Content-Type": @"application/x-www-form-urlencoded; charset=UTF-8",
+            @"Referer": @"https://cn.bing.com/translator/",
+            @"User-Agent": [LWConverterService userAgent],
+            @"Origin":@"https://cn.bing.com"
+    };
+
+    NSURL *URL = [NSURL URLWithString:Fanyi_URLString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0];
+    [request setHTTPMethod:@"POST"];
+    [request setAllHTTPHeaderFields:headers];
+    NSString *bodyText = [NSString stringWithFormat:@"fromLang=auto-detect&text=%@&to=%@",zi,to];
+    [request setHTTPBody:[bodyText dataUsingEncoding:NSUTF8StringEncoding]];
+//    //url encodeing
+//    NSURLComponents *urlComponents = [[NSURLComponents alloc] init];
+//    urlComponents.query=bodyText;
+//    [request setHTTPBody:[urlComponents.percentEncodedQuery dataUsingEncoding:NSUTF8StringEncoding]];
+
+
+    //从网络获取配置
+    __weak typeof(self) weakSelf = self;
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session
+            dataTaskWithRequest:request
+              completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                  dispatch_async(dispatch_get_main_queue(), ^{
+                      translation = @"数据处理异常";
+                      if (!error) {
+                          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+                          NSError *parseError = nil;
+                          id dat = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+                          NSLog(@"====aaa:%@", dat);
+                          if ([dat isKindOfClass:[NSDictionary class]]) {
+                              translation = @"服务异常";
+
+                          } else if ([dat isKindOfClass:[NSArray class]]) {
+                              id content = ((NSArray *) dat).firstObject;
+                              id translations = [content isKindOfClass:[NSDictionary class]] ? ((NSDictionary *) content)[@"translations"] : nil;
+                              id trans = [translations isKindOfClass:[NSArray class]] ? ((NSArray *) translations).firstObject : translations;
+                              translation = [trans isKindOfClass:[NSDictionary class]] ? ((NSDictionary *) trans)[@"text"] : nil;
+                          }
+                      }
+
+                      if (updateUIBlock) {
+                          updateUIBlock(translation, nil); //更新UI
+                      }
+                  });
+
+              }];
+    [dataTask resume];
+
+}
+
+
+/*
+- (void)fanyiZi:(NSString *)zi to:(NSString *)to updateUIBlock:(void (^)(NSString *text,BOOL isErrorMsg))updateUIBlock{
+
+    if(to && ![self isBlankString:to]){
+        self.toLanguage = to;
+    }
+    __block NSString *translation = @"";
+    //检查网络
     if (self.networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable) {
         translation = NSLocalizedString(@"Check Network Connection", nil);
     }
@@ -230,9 +298,9 @@
 //    __weak typeof(self) weakSelf = self;
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (error) {
-//            LWLog(@"=====Error: %@", error);
+//            NSLog(@"=====Error: %@", error);
         } else {
-//            LWLog(@"=====responseObject:%@",responseObject);
+//            NSLog(@"=====responseObject:%@",responseObject);
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
                 NSDictionary *data = responseObject;
                 BOOL isError = data[@"error_code"] && ![@"52000" isEqualToString:data[@"error_code"]];
@@ -258,6 +326,7 @@
     }];
     [dataTask resume];
 }
+*/
 
 
 //生成32位的16进制小写的md5串
@@ -289,5 +358,31 @@
     return ![[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length];
 }
 
++(NSString *)userAgent {
+
+    NSArray *ua_list = @[
+            @"Mozilla/5.0 (Windows NT 6.1; rv:67.0) Gecko/20100101 Firefox/67.0",
+            @"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101 Firefox/68.0",
+            @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:66.0) Gecko/20100101 Firefox/66.0",
+            @"Mozilla/5.0 (Android 8.1.0; Mobile; rv:66.0) Gecko/66.0 Firefox/66.0",
+            @"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3724.8 Safari/537.36",
+            @"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36",
+            @"Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36",
+            @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36",
+            @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36",
+            @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36",
+            @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3788.1 Safari/537.36",
+            @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Safari/605.1.15",
+            @"Mozilla/5.0 (Windows NT 6.1; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E; rv:11.0) like Gecko",
+            @"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36 OPR/60.0.3255.95",
+            @"Mozilla/5.0 (iPod; U; CPU iPhone OS 2_1 like Mac OS X; ja-jp) AppleWebKit/525.18.1 (KHTML, like Gecko) Version/3.1.1 Mobile/5F137 Safari/525.20",
+            @"Mozilla/5.0 (Linux; Android 7.0; VTR-AL00 Build/HUAWEIVTR-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044705 Mobile Safari/537.36 MMWEBID/9843 MicroMessenger/7.0.5.1440(0x27000537) Process/tools NetType/4G Language/zh_CN",
+            @"Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.4(0x17000428) NetType/4G Language/zh_CN",
+            @"Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 QQ/8.0.8.458 V1_IPH_SQ_8.0.8_1_APP_A Pixel/750 Core/WKWebView Device/Apple(iPhone 8) NetType/WIFI QBWebViewType/1 WKType/1",
+    ];
+    NSUInteger i = (NSUInteger) (rand() % 18);
+    NSString *userAgent=ua_list[i];
+    return userAgent;
+}
 
 @end

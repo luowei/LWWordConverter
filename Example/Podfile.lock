@@ -1,21 +1,7 @@
 PODS:
-  - AFNetworking (3.2.1):
-    - AFNetworking/NSURLSession (= 3.2.1)
-    - AFNetworking/Reachability (= 3.2.1)
-    - AFNetworking/Security (= 3.2.1)
-    - AFNetworking/Serialization (= 3.2.1)
-    - AFNetworking/UIKit (= 3.2.1)
-  - AFNetworking/NSURLSession (3.2.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.2.1)
-  - AFNetworking/Security (3.2.1)
-  - AFNetworking/Serialization (3.2.1)
-  - AFNetworking/UIKit (3.2.1):
-    - AFNetworking/NSURLSession
+  - LWReachabilityManager (1.0.0)
   - LWWordConverter (1.0.0):
-    - AFNetworking
+    - LWReachabilityManager
     - SQLCipher
   - SQLCipher (4.2.0):
     - SQLCipher/standard (= 4.2.0)
@@ -24,13 +10,14 @@ PODS:
     - SQLCipher/common
 
 DEPENDENCIES:
-  - AFNetworking
+  - LWReachabilityManager
   - LWWordConverter (from `../`)
   - SQLCipher
 
 SPEC REPOS:
+  https://gitee.com/lw_ios_project/mylibrepo.git:
+    - LWReachabilityManager
   trunk:
-    - AFNetworking
     - SQLCipher
 
 EXTERNAL SOURCES:
@@ -38,10 +25,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  LWWordConverter: 11a881ba4c1d729891ea94cb34d3fed6723bb82a
+  LWReachabilityManager: 731767d00a7f5d1bff08509b0b74631ee0de4955
+  LWWordConverter: 4abd1992e0405189a7ae9c4a1a852783202e20d4
   SQLCipher: 0187a2180ac288ea686b670b7141da62cd013b16
 
-PODFILE CHECKSUM: e48d1b6b819600e0145d5eaf469e32b083e90bde
+PODFILE CHECKSUM: 8d9523b70a48796cef60ffb81d5f9217384f4bd0
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.2
