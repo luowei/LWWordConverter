@@ -32,7 +32,8 @@ LWWordConverter，文字转换器，包括五笔与拼音的编码转换，翻�
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'LWWordConverter/Classes/**/*'
-  
+  s.exclude_files = 'LWWordConverter/Classes/**/*.swift'
+
   # s.resource_bundles = {
   #   'LWWordConverter' => ['LWWordConverter/Assets/*.png']
   # }

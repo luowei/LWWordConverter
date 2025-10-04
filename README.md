@@ -1,11 +1,13 @@
 # LWWordConverter
 
-[中文版](./README_ZH.md) | English
+[中文版](./README_ZH.md) | English | [Swift Version](./README_SWIFT_VERSION.md)
 
 [![CI Status](https://img.shields.io/travis/luowei/LWWordConverter.svg?style=flat)](https://travis-ci.org/luowei/LWWordConverter)
 [![Version](https://img.shields.io/cocoapods/v/LWWordConverter.svg?style=flat)](https://cocoapods.org/pods/LWWordConverter)
 [![License](https://img.shields.io/cocoapods/l/LWWordConverter.svg?style=flat)](https://cocoapods.org/pods/LWWordConverter)
 [![Platform](https://img.shields.io/cocoapods/p/LWWordConverter.svg?style=flat)](https://cocoapods.org/pods/LWWordConverter)
+
+> **Note:** A Swift version of this library is now available! See [README_SWIFT_VERSION.md](./README_SWIFT_VERSION.md) for details on using `LWWordConverter_swift`.
 
 ## Table of Contents
 
